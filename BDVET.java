@@ -10,7 +10,7 @@ public class BDVET {
         try {
             // Cargar el driver JDBC de Oracle
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            
+            System.out.println("start");
             // Conectar a la base de datos Oracle
             String url = "jdbc:oracle:thin:@localhost:1521:orcl";
             String username = "KEILYN";
