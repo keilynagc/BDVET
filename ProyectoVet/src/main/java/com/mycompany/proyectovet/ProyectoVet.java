@@ -72,7 +72,7 @@ public class ProyectoVet {
                 chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("idMascota") + 
                         "\n  la especie es : "+rs.getString("especie")+
                         "\n  y el nombre de la mascota es: " + rs.getString("nombre")+
-                        "\n  El dueño es : "+rs.getString("nombre_dueno")+;
+                        "\n  El dueño es : "+rs.getString("nombre_dueno");
                 System.out.println(chain);
                 
             }
