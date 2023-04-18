@@ -20,7 +20,7 @@ public class ProyectoVet {
          
         // menu
           int selection ;
-          JOptionPane.showMessageDialog(null, " Gracias por ingresar a nnuestro systema ");
+          JOptionPane.showMessageDialog(null, " Gracias por ingresar a nuestro systema ");
           
 
         selection = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
@@ -67,6 +67,7 @@ public class ProyectoVet {
             
             
             // Imprimir los resultados de la consulta
+          
             while (rs.next()) {
                
                 chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("idMascota") + 
@@ -84,6 +85,8 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    String[] vectorStrings = new String[5];
+     main(vectorStrings);
     }
     
     
