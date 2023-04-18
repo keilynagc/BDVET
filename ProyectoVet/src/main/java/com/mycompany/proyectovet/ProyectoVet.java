@@ -24,8 +24,10 @@ public class ProyectoVet {
           
 
         selection = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
-                + "1. Ver todos los animales \n"
-                + "2. consultar diagnostico  \n"));
+                + "Por favor digite una de las siguientes opciones: \n"
+                + "1. Ver todos los pacientes \n"
+                + "2. bsucar un paciente por id \n"
+                + "3. consultar diagnostico  \n"));
         switch (selection) {
             case 1:
                 allAnimals();
@@ -61,20 +63,19 @@ public class ProyectoVet {
             
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from paciente");
+            ResultSet rs = stmt.executeQuery("select * from vista_pacientes_dueno");
             
             
             // Imprimir los resultados de la consulta
             while (rs.next()) {
                
-                chain+= "El id de mascota es: "+ rs.getInt("idMascota") + 
+                chain+= "\n El id de mascota es: "+ rs.getInt("idMascota") + 
                         "\n  la especie es : "+rs.getString("especie")+
-                        "\n  y el nombre de la mascota es: " + rs.getString("nombre");
+                        "\n  y el nombre de la mascota es: " + rs.getString("nombre")+"\n \n";
                 System.out.println(chain);
                 
             }
             JOptionPane.showMessageDialog(null, chain);
-            System.out.println("salida");
             // Cerrar la conexión
             rs.close();
             stmt.close();
