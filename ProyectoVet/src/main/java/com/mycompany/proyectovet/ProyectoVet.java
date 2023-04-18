@@ -69,9 +69,10 @@ public class ProyectoVet {
             // Imprimir los resultados de la consulta
             while (rs.next()) {
                
-                chain+= "\n El id de mascota es: "+ rs.getInt("idMascota") + 
+                chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("idMascota") + 
                         "\n  la especie es : "+rs.getString("especie")+
-                        "\n  y el nombre de la mascota es: " + rs.getString("nombre")+"\n \n";
+                        "\n  y el nombre de la mascota es: " + rs.getString("nombre")+
+                        "\n  El dueño es : "+rs.getString("nombre_dueno")+;
                 System.out.println(chain);
                 
             }
