@@ -107,7 +107,7 @@ public class ProyectoVet {
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
             String idmasc = JOptionPane.showInputDialog(" Digite el id de la mascota a buscar");
-            String query = "select * FROM vista_pacientes_dueno where idmascota ="+idmasc +";";
+            String query = "select * FROM vista_pacientes_dueno where idmascota ="+idmasc;
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             System.out.println(query);
