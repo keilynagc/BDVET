@@ -27,13 +27,16 @@ public class ProyectoVet {
                 + "Por favor digite una de las siguientes opciones: \n"
                 + "1. Ver todos los pacientes \n"
                 + "2. bsucar un paciente por id \n"
-                + "3. consultar diagnostico  \n"));
+                + "3. consultar cita  \n"));
         switch (selection) {
             case 1:
                 allAnimals();
                 break;
             case 2:
                 search_animal();
+                break;
+            case 3:
+                revisar_cita();
                 break;
             
 
@@ -136,6 +139,53 @@ public class ProyectoVet {
      main(vectorStrings);
     }   
     
+      
+    
+  public static  void revisar_cita (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            String fecha = JOptionPane.showInputDialog(" Digite la fecha de la cita  en formato dd-mm-yyyy");
+            String query = "select * from citas where fecha = "+fecha;
+            System.out.println(query);
+            ResultSet rs = stmt.executeQuery(query);
+            System.out.println(query);
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                chain+= "\n ***************************************\nEl id de mascota es: "+ idmasc + 
+                        "\n  y el nombre de la mascota es: " + rs.getString("nombre")+
+                        "\n  la especie es : "+rs.getString("especie")+
+                        "\n  la raza es : "+rs.getString("raza")+
+                        "\n  El dueño es : "+rs.getString("nombre_dueno");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    String[] vectorStrings = new String[5];
+     main(vectorStrings);
+    }   
     
     public static void addAnimal(){
         
