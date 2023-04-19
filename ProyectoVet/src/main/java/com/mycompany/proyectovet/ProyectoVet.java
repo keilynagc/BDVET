@@ -110,7 +110,7 @@ public class ProyectoVet {
             String query = "select * FROM vista_pacientes_dueno where idmascota ="+idmasc +";";
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
-            
+            System.out.println(query);
             
             // Imprimir los resultados de la consulta
           
