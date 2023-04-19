@@ -33,7 +33,7 @@ public class ProyectoVet {
                 allAnimals();
                 break;
             case 2:
-                addAnimal();
+                search_animal();
                 break;
             
 
@@ -90,7 +90,49 @@ public class ProyectoVet {
     }
     
     
-    
+  public static  void search_animal (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            String idmasc = JOptionPane.showInputDialog(" Digite el id de la mascota a buscar");
+            ResultSet rs = stmt.executeQuery("select * FROM vista_pacientes_dueno where idmascota ="+idmasc +";");
+            
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                chain+= "\n ***************************************\nEl id de mascota es: "+ idmasc + 
+                        "\n  y el nombre de la mascota es: " + rs.getString("nombre")+
+                        "\n  la especie es : "+rs.getString("especie")+
+                        "\n  la raza es : "+rs.getString("raza")+
+                        "\n  El dueño es : "+rs.getString("nombre_dueno");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    String[] vectorStrings = new String[5];
+     main(vectorStrings);
+    }   
     
     
     public static void addAnimal(){
