@@ -167,11 +167,10 @@ public class ProyectoVet {
           
             while (rs.next()) {
                
-                chain+= "\n ***************************************\nEl id de mascota es: "+ idmasc + 
-                        "\n  y el nombre de la mascota es: " + rs.getString("nombre")+
-                        "\n  la especie es : "+rs.getString("especie")+
-                        "\n  la raza es : "+rs.getString("raza")+
-                        "\n  El dueño es : "+rs.getString("nombre_dueno");
+                chain+= "\n ***************************************\n Las citas de la fecha  "+ fecha +" son : "+  
+                        "\n  El id de la mascota: " + rs.getInt("idmascota")+
+                        "\n  nombre: : "+rs.getString("nombre")+
+                        "\n  la hora : "+rs.getString("hora");
                 System.out.println(chain);
                 
             }
