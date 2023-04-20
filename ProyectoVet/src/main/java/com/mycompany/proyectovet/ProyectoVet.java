@@ -158,7 +158,7 @@ public class ProyectoVet {
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
             String fecha = JOptionPane.showInputDialog(" Digite la fecha de la cita  en formato dd-mm-yyyy");
-            String query = "select * from citas where fecha = "+fecha;
+            String query = "select * from citas where fecha = '"+fecha+ "'";
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             System.out.println(query);
