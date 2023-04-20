@@ -247,7 +247,7 @@ public class ProyectoVet {
             
             
             // Realizar una consulta de prueba
-            int p_id = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la mascota que desea eliminar"));
+            int p_id = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la mascota que desea agregar"));
             String nom = JOptionPane.showInputDialog(null, "Digite el nombre de la mascota que desea agregar");
             String esp = JOptionPane.showInputDialog(null, "Digite la especie de la mascota que desea agregar");
             String raza = JOptionPane.showInputDialog(null, "Digite la raza de la mascota que desea agregar");
