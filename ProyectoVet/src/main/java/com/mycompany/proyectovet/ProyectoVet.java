@@ -26,8 +26,9 @@ public class ProyectoVet {
         selection = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
                 + "Por favor digite una de las siguientes opciones: \n"
                 + "1. Ver todos los pacientes \n"
-                + "2. bsucar un paciente por id \n"
-                + "3. consultar cita  \n"));
+                + "2. buscar un paciente por id \n"
+                + "3. consultar cita  \n"
+                + "4. Eliminar un paciente  \n"));
         switch (selection) {
             case 1:
                 allAnimals();
@@ -37,6 +38,9 @@ public class ProyectoVet {
                 break;
             case 3:
                 revisar_cita();
+                break;
+            case 4:
+                eliminar_paciente();
                 break;
             
 
@@ -167,7 +171,7 @@ public class ProyectoVet {
           
             while (rs.next()) {
                
-                chain+= "\n ***************************************\n Las citas de la fecha  "+ fecha +" son : "+  
+                chain+= "\n ***************************************\n Las citas acorde a la fecha ingresada  "+ fecha +" son : "+  
                         "\n  El id de la mascota: " + rs.getInt("idmascota")+
                         "\n  nombre: : "+rs.getString("nombre")+
                         "\n  la hora : "+rs.getString("hora");
@@ -185,7 +189,45 @@ public class ProyectoVet {
     String[] vectorStrings = new String[5];
      main(vectorStrings);
     }   
-    
+ public static  void eliminar_paciente (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            int p_id = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la mascota que desea eliminar"));
+            int p_dueno_id =  Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el la cedula del dueno de la mascota que desea eliminar"));
+            String procedureCall = "{call Eliminar_Paciente(?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+            
+            statement.setInt(1, p_id);
+            statement.setInt(2, p_dueno_id);
+        
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "El paciente se elimino correctamente");
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    String[] vectorStrings = new String[5];
+     main(vectorStrings);
+    }   
+ 
     public static void addAnimal(){
         
     try {
