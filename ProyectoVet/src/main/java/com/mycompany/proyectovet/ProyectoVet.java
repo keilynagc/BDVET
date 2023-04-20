@@ -258,18 +258,18 @@ public class ProyectoVet {
             String procedureCall = "{call insertar_paciente(?, ?, ?, ?, ?, ?,?)}";
             CallableStatement statement = conn.prepareCall(procedureCall);
 
-            
+           
             statement.setInt(1, p_id);
             statement.setString(2, nom);
-            statement.setString(2, esp);
-            statement.setString(2, raza);
-            statement.setString(2, fecha);
-            statement.setString(2, color);
-            statement.setInt(1, p_dueno_id);
+            statement.setString(3, esp);
+            statement.setString(4, raza);
+            statement.setString(5, fecha);
+            statement.setString(6, color);
+            statement.setInt(7, p_dueno_id);
             
             
             statement.execute();
-            JOptionPane.showMessageDialog(null, "El paciente se elimino correctamente");
+            JOptionPane.showMessageDialog(null, "El paciente se agrego correctamente");
              
             // Cerrar la conexión
 
