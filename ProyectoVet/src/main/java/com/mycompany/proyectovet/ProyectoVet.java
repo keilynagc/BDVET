@@ -253,7 +253,7 @@ public class ProyectoVet {
             String raza = JOptionPane.showInputDialog(null, "Digite la raza de la mascota que desea agregar");
             String fecha = JOptionPane.showInputDialog(null, "Digite la fecha de nacimiento de la mascota que desea agregar");
             String color = JOptionPane.showInputDialog(null, "Digite el color de la mascota que desea agregar");
-            int p_dueno_id =  Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el la cedula del dueno de la mascota que desea eliminar"));
+            int p_dueno_id =  Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el la cedula del dueno de la mascota que desea agregar"));
             
             String procedureCall = "{call insertar_paciente(?, ?, ?, ?, ?, ?,?)}";
             CallableStatement statement = conn.prepareCall(procedureCall);
