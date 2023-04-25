@@ -20,7 +20,7 @@ public class ProyectoVet {
          
         // menu
           int selection ;
-          JOptionPane.showMessageDialog(null, " Gracias por ingresar a nuestro systema ");
+          JOptionPane.showMessageDialog(null, " Gracias por ingresar a nuestro sistema ");
           
 
         selection = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
