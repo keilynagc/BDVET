@@ -874,7 +874,11 @@ public class ProyectoVet {
             
             
             statement.execute();
-            JOptionPane.showMessageDialog(null, "EL dueno se agrego exitosamente");
+            if (telefono.length() !=8 ){
+            JOptionPane.showMessageDialog(null, "EL dueno no se agrego debido a un numero de telefono con formato erroneo");
+            }
+            else{ JOptionPane.showMessageDialog(null, "EL dueno se agrego exitosamente");}
+           
              
              
             // Cerrar la conexión
