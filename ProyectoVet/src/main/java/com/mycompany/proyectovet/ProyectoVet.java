@@ -721,7 +721,7 @@ public class ProyectoVet {
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
             String iddu = JOptionPane.showInputDialog(" Digite la cecdula del dueno a buscar");
-            String query = "select * FROM duenos where idduneo ='"+iddu+"'";
+            String query = "select * FROM dueno where iddueno ='"+iddu+"'";
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             System.out.println(query);
