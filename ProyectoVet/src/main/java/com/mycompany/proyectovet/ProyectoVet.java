@@ -1672,7 +1672,7 @@ public class ProyectoVet {
             String nom = JOptionPane.showInputDialog(null, "Digite el  nombre que desea agregar");
             
             
-            String procedureCall = "{call INSERT_Especialidad(?, ?)}";
+            String procedureCall = "{call INSERTAR_Especialidad(?, ?)}";
             CallableStatement statement = conn.prepareCall(procedureCall);
 
            
