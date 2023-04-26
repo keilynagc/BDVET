@@ -49,9 +49,13 @@ public class ProyectoVet {
               menuRegistro();
                 break;
             case 5:
+                menuMedico();
             
                 break;
-
+            case 6:
+                menuEspecialidad();
+            
+                break;
             default:
                  JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
                  exit(0);
@@ -1170,7 +1174,528 @@ public class ProyectoVet {
     }
     
     
+             
+   //****************************************************************************************************************************     
+   //**************************************************************************************************************************** 
+   //                        Medico
+   //****************************************************************************************************************************    
+   //****************************************************************************************************************************     
+    public static void menuMedico(){
     
+        int selection2;
+        selection2 = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
+                + "Por favor digite una de las siguientes opciones: \n"
+                + "1. Ver todos los medicos \n"
+                + "2. buscar un medico \n"
+                + "3. Actualizar un medicos \n"
+                + "4. Eliminar un medicos  \n"
+                + "5. Agregar un medicos  \n"));
+        switch (selection2) {
+            case 1:
+                todosMedico();
+                break;
+            case 2:
+                buscarMedico();
+                break;
+            case 3:
+                actualizarMedico();
+                break;
+            case 4:
+                eliminarMedico();
+                break;
+            case 5:
+                agregarMedico();
+                break;
+
+            default:
+                  JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
+                      return;
+             
+
+        }
+    
+    }
+    
+    
+    public static  void todosMedico (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from medico ");
+            
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                chain+= "\n ***************************************\nel id del medico  es : "+ rs.getInt("idmedico") + 
+                        "\n  El nombre del medidco  es: " + rs.getString("nombre")+
+                        "\n  El apellido : "+rs.getString("apellido")+
+                        
+                        "\n  El id de la especialidad es  : "+rs.getInt("idespecialidad");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return;
+    }
+    
+    
+  public static  void buscarMedico (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            String idmed= JOptionPane.showInputDialog(" Digite el id del medidco a buscar");
+            String query = "select * FROM medico where idmedico="+idmed;
+            System.out.println(query);
+            ResultSet rs = stmt.executeQuery(query);
+            System.out.println(query);
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                 chain+= "\n ***************************************\nEL id de medico buscada es : "+ rs.getInt("idmedico") + 
+                        "\n  El nombre del medidco  es: " + rs.getString("nombre")+
+                        "\n  El apellido : "+rs.getString("apellido")+
+                        
+                        "\n  El id de la especialidad es  : "+rs.getInt("idespecialidad");;
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+    }   
+    
+  
+  
+  
+ public static  void eliminarMedico (){
+  
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+           int idmed = Integer.parseInt(JOptionPane.showInputDialog(" Digite el id del medico que desea eliminar "));
+            String procedureCall = "{call Eliminar_Medico(?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+            
+            statement.setInt(1, idmed);
+        
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "El medico se  elimino correctamente");
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+    }   
+ 
+    public static void actualizarMedico(){
+
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            int p_idMed = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id del medico que desea acutualizar"));
+            String nom = JOptionPane.showInputDialog(null, "Digite el nuevo nombre");
+            String apellido = JOptionPane.showInputDialog(null, "Digite el nuevo apellido");
+            int p_idespe = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite la nueva especialidad"));
+            
+            
+            String procedureCall = "{call Actualizar_Medico(?, ?, ?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+           
+            statement.setInt(1, p_idMed);
+            statement.setString(2, nom);
+            statement.setString(3, apellido);
+            statement.setInt(4, p_idespe);
+            
+            
+            
+            statement.execute();
+            
+            JOptionPane.showMessageDialog(null, "EL medico  se actualizo correctamente");
+            
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return;
+        
+    
+    }
+
+
+
+    public static void agregarMedico(){
+ 
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+              
+            // Realizar una consulta de prueba
+           int p_idMed = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id del medico que desea agregar"));
+            String nom = JOptionPane.showInputDialog(null, "Digite el  nombre desea  agregar");
+            String apellido = JOptionPane.showInputDialog(null, "Digite el  apellido que desea agregar");
+            int p_idespe = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite la  especialidad desea  agregar"));
+            
+            
+            String procedureCall = "{call Insertar_Medico(?, ?, ?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+           
+            statement.setInt(1, p_idMed);
+            statement.setString(2, nom);
+            statement.setString(3, apellido);
+            statement.setInt(4, p_idespe);
+            
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "EL medico se agrego exitosamente");
+           
+             
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+        
+    
+    }
+    
+    
+          
+   //****************************************************************************************************************************     
+   //**************************************************************************************************************************** 
+   //                        ESPECIALIDAD
+   //****************************************************************************************************************************    
+   //****************************************************************************************************************************     
+    public static void menuEspecilaidad(){
+    
+        int selection2;
+        selection2 = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
+                + "Por favor digite una de las siguientes opciones: \n"
+                + "1. Ver todos los medicos \n"
+                + "2. buscar un medico \n"
+                + "3. Actualizar un medicos \n"
+                + "4. Eliminar un medicos  \n"
+                + "5. Agregar un medicos  \n"));
+        switch (selection2) {
+            case 1:
+                todasEspecialidad();
+                break;
+            case 2:
+                buscarEspecialidad();
+                break;
+            case 3:
+                actualizarEspecialidad();
+                break;
+            case 4:
+                eliminarEspecialidad();
+                break;
+            case 5:
+                agregarEspecialidad();
+                break;
+
+            default:
+                  JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
+                      return;
+             
+
+        }
+    
+    }
+    
+    
+    public static  void todasEspecialidad (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from especialidades ");
+            
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                chain+= "\n ***************************************\nel id de la especialidad es : "+ rs.getInt("idespecialidad") + 
+                        "\n  El nombre de la especilaidad  es: " + rs.getString("nombreespec");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return;
+    }
+    
+    
+  public static  void buscarEspecialidad (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            String idespec= JOptionPane.showInputDialog(" Digite el id de la especialidad  a buscar");
+            String query = "select * FROM especialidades where idespecialidad="+idespec;
+            System.out.println(query);
+            ResultSet rs = stmt.executeQuery(query);
+            System.out.println(query);
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                 chain+= "\n ***************************************\nEl id de la especialidad es : "+ rs.getInt("idespecialidad") + 
+                        "\n  El nombre de la especilaidad  es: " + rs.getString("nombreespec");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+    }   
+    
+  
+  
+  
+ public static  void eliminarEspecialidad(){
+  
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+           int idespe = Integer.parseInt(JOptionPane.showInputDialog(" Digite el id de la especilaidad que  desea eliminar "));
+            String procedureCall = "{call Eliminar_Especialidad(?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+            
+            statement.setInt(1, idespe);
+        
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "La especialidad se  elimino correctamente");
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+    }   
+ 
+    public static void actualizarEspecialidad(){
+
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            int p_idespe = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la especilidad que desea acutualizar"));
+            String nom = JOptionPane.showInputDialog(null, "Digite el nuevo nombre de la especiliad");
+            
+            
+            String procedureCall = "{call Actualizar_Especialidad(?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+           
+            statement.setInt(1, p_idespe);
+            statement.setString(2, nom);
+            
+            
+            
+            statement.execute();
+            
+            JOptionPane.showMessageDialog(null, "La especilidad se actualizo correctamente");
+            
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return;
+        
+    
+    }
+
+
+
+    public static void agregarEspecialidad(){
+ 
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+              
+            // Realizar una consulta de prueba
+           int p_idespe = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la especilidad que desea agregar"));
+            String nom = JOptionPane.showInputDialog(null, "Digite el  nombre que desea agregar");
+            
+            
+            String procedureCall = "{call INSERT_Especialidad(?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+           
+            statement.setInt(1, p_idespe);
+            statement.setString(2, nom);
+            
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "la especialidad se agrego exitosamente");
+           
+             
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+        
+    
+    }
     
 }
 
