@@ -191,8 +191,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    String[] vectorStrings = new String[5];
-     main(vectorStrings);
+ return;
     }   
     
   
