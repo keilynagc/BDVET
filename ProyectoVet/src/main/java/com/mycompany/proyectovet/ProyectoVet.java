@@ -999,7 +999,7 @@ public class ProyectoVet {
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
             String idmasc = JOptionPane.showInputDialog(" Digite el id de la mascota del registro a buscar");
-            String query = "select * FROM registro where idmascota ='"+idmasc+"'";
+            String query = "select * FROM registro where idmascota ="+idmasc;
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             System.out.println(query);
@@ -1153,7 +1153,7 @@ public class ProyectoVet {
             statement.setInt(5, p_idcita);
             
             statement.execute();
-            JOptionPane.showMessageDialog(null, "EL dueno se agrego exitosamente");
+            JOptionPane.showMessageDialog(null, "EL registro se agrego exitosamente");
            
              
              
