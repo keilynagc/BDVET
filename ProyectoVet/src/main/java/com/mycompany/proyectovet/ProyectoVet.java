@@ -546,8 +546,9 @@ public class ProyectoVet {
             
             
             statement.execute();
-            JOptionPane.showMessageDialog(null, "La cita se actualizo correctamente");
-             
+            
+            JOptionPane.showMessageDialog(null, "Si digitaste el id de la la cita correcto entonces la cita se actualizo correctamente");
+            
             // Cerrar la conexión
 
             statement.close();
