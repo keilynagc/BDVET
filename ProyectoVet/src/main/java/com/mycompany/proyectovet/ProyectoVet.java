@@ -1449,7 +1449,7 @@ public class ProyectoVet {
    //                        ESPECIALIDAD
    //****************************************************************************************************************************    
    //****************************************************************************************************************************     
-    public static void menuEspecilaidad(){
+    public static void menuEspecialidad(){
     
         int selection2;
         selection2 = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
