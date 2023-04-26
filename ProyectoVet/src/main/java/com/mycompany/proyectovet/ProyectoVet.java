@@ -43,7 +43,7 @@ public class ProyectoVet {
                 menuCitas();
                 break;
             case 3:
-               
+               menuDueno();
                 break;
             case 4:
               
