@@ -618,7 +618,276 @@ public class ProyectoVet {
     
     
     
+        
+   //****************************************************************************************************************************     
+   //**************************************************************************************************************************** 
+   //                        DUENOS 
+   //****************************************************************************************************************************    
+   //****************************************************************************************************************************     
+    public static void menuDueno(){
     
+        int selection2;
+        selection2 = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
+                + "Por favor digite una de las siguientes opciones: \n"
+                + "1. Ver todos los duenos y su paciente \n"
+                + "2. buscar un dueno por cedula \n"
+                + "3. Actualizar un dueno \n"
+                + "4. Eliminar un dueno  \n"
+                + "5. Agregar un dueno  \n"));
+        switch (selection2) {
+            case 1:
+                todosDueno();
+                break;
+            case 2:
+                buscarDueno();
+                break;
+            case 3:
+                actualizarDueno();
+                break;
+            case 4:
+                eliminarDueno();
+                break;
+            case 5:
+                agregarDueno();
+                break;
+
+            default:
+                  JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
+                      return;
+             
+
+        }
+    
+    }
+    
+    
+    public static  void todosDueno (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from dueno");
+            
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("iddueno") + 
+                        "\n  El nombre de la mascota es: " + rs.getString("nombre")+
+                        "\n  El apellido es : "+rs.getString("Apellido")+
+                         "\n  El telefono es : "+rs.getString("telefono")+
+                            "\n  La direccion es : "+rs.getString("direccion");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return;
+    }
+    
+    
+  public static  void buscarDueno (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            String iddu = JOptionPane.showInputDialog(" Digite la cecdula del dueno a buscar");
+            String query = "select * FROM duenos where idduneo ="+iddu;
+            System.out.println(query);
+            ResultSet rs = stmt.executeQuery(query);
+            System.out.println(query);
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                 chain+= "\n ***************************************\nLa cedula buscada  es: "+ rs.getInt("iddueno") + 
+                        "\n  El nombre de dueno es: " + rs.getString("nombre")+
+                        "\n  El apellido es : "+rs.getString("Apellido")+
+                        "\n  El telefono es : "+rs.getString("telefono")+
+                        "\n  La direccion es : "+rs.getString("direccion");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+    }   
+    
+  
+  
+  
+ public static  void eliminarDueno (){
+  
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            int p_id = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite la cedula del dueno que desea eliminar"));
+            String procedureCall = "{call Eliminar_Dueno(?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+            
+            statement.setInt(1, p_id);
+        
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "El duneo se  elimino correctamente");
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+    }   
+ 
+    public static void actualizarDuneo(){
+
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            int p_idDueno = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite la cedula del dueno que desea acutualizar"));
+            String nom = JOptionPane.showInputDialog(null, "Digite el nombre del duneo que desea acutualizar");
+            String apellidos = JOptionPane.showInputDialog(null, "Digite el apellido  que desea acutualizar");
+            String telefono = JOptionPane.showInputDialog(null, "Digite el telefono al que desea acutualizar");
+            String direc = JOptionPane.showInputDialog(null, "Digite la nueva direcion");
+            
+            
+            String procedureCall = "{call Actualizar_citas(?, ?, ?, ?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+           
+            statement.setInt(1, p_idDueno);
+            statement.setString(2, nom);
+            statement.setString(3, apellidos);
+            statement.setString(4, telefono);
+            statement.setString(5, direc);
+            
+            
+            
+            statement.execute();
+            
+            JOptionPane.showMessageDialog(null, "EL dueno se actualizo correctamente");
+            
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return;
+        
+    
+    }
+
+
+
+    public static void agregarDueno(){
+ 
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+              
+            // Realizar una consulta de prueba
+            int p_idDueno = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite la cedula del dueno que desea agregar"));
+            String nom = JOptionPane.showInputDialog(null, "Digite el nombre del duneo que desea agregar");
+            String apellidos = JOptionPane.showInputDialog(null, "Digite el apellido  que desea agregar");
+            String telefono = JOptionPane.showInputDialog(null, "Digite el telefono al que desea agregar");
+            String direc = JOptionPane.showInputDialog(null, "Digite la direccion del dueno ");
+            
+            
+            String procedureCall = "{call insertar_dueno(?, ?, ?, ?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+           
+            statement.setInt(1, p_idDueno);
+            statement.setString(2, nom);
+            statement.setString(3, apellidos);
+            statement.setString(4, telefono);
+            statement.setString(5, direc);            
+            
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "EL dueno se agrego exitosamente");
+             
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+        
+    
+    }
     
     
     
