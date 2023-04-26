@@ -39,16 +39,16 @@ public class ProyectoVet {
                 menuAnimal();
                 break;
             case 2:
-                buscaPaciente();
+                menuCitas();
                 break;
             case 3:
-                revisar_cita();
+               
                 break;
             case 4:
-                eliminarPaciente();
+              
                 break;
             case 5:
-                agregarPaciente();
+            
                 break;
 
             default:
