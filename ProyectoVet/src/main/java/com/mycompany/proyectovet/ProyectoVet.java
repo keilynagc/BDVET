@@ -810,7 +810,7 @@ public class ProyectoVet {
             String direc = JOptionPane.showInputDialog(null, "Digite la nueva direcion");
             
             
-            String procedureCall = "{call Actualizar_citas(?, ?, ?, ?, ?)}";
+            String procedureCall = "{call Actualizar_Dueno(?, ?, ?, ?, ?)}";
             CallableStatement statement = conn.prepareCall(procedureCall);
 
            
