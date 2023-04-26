@@ -232,8 +232,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    String[] vectorStrings = new String[5];
-     main(vectorStrings);
+     return;
     }   
  
     public static void actualizarPaciente(){
@@ -282,9 +281,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] vectorStrings = new String[5];
-         main(vectorStrings);
-        
+             return;
     
     }
 
@@ -337,9 +334,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] vectorStrings = new String[5];
-         main(vectorStrings);
-        
+             return;
     
     }
     
@@ -377,8 +372,7 @@ public class ProyectoVet {
 
             default:
                   JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
-                 exit(0);
-                break;
+                      return;
              
 
         }
@@ -426,8 +420,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    String[] vectorStrings = new String[5];
-     main(vectorStrings);
+       return;
     }
     
     
@@ -474,8 +467,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    String[] vectorStrings = new String[5];
-     main(vectorStrings);
+         return;
     }   
     
   
@@ -514,8 +506,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    String[] vectorStrings = new String[5];
-     main(vectorStrings);
+         return;
     }   
  
     public static void actualizarCita(){
@@ -564,8 +555,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] vectorStrings = new String[5];
-         main(vectorStrings);
+            return;
         
     
     }
@@ -587,12 +577,12 @@ public class ProyectoVet {
             
               
             // Realizar una consulta de prueba
-             int p_mascota_id =  Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la mascota de la  cita que desea acutualizar"));
-            String nom = JOptionPane.showInputDialog(null, "Digite el nombre de la mascota que desea acutualizar");
-            String fecha = JOptionPane.showInputDialog(null, "Digite la fecha de nacimiento de la cita que desea acutualizar");
-            String hora = JOptionPane.showInputDialog(null, "Digite la hora de la cita que desea acutualizar");
+             int p_mascota_id =  Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la mascota de la  cita que desea agregar"));
+            String nom = JOptionPane.showInputDialog(null, "Digite el nombre de la mascota que desea agregar");
+            String fecha = JOptionPane.showInputDialog(null, "Digite la fecha de nacimiento de la cita que desea agregar");
+            String hora = JOptionPane.showInputDialog(null, "Digite la hora de la cita que desea agregar");
            
-            int p_medico_id =  Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id del medico de la cita que desea acutualizar"));
+            int p_medico_id =  Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id del medico de la cita que desea agregar"));
             
             
             String procedureCall = "{call Nueva_cita(?, ?, ?, ?, ?)}";
@@ -619,8 +609,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] vectorStrings = new String[5];
-         main(vectorStrings);
+         return;
         
     
     }
