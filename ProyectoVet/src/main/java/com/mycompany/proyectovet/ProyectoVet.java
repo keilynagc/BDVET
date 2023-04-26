@@ -21,9 +21,10 @@ public class ProyectoVet {
         // menu
         int selection;
         
-              
-          int selection2 ;
-          JOptionPane.showMessageDialog(null, " Gracias por ingresar a nuestro sistema ");
+         JOptionPane.showMessageDialog(null, " Gracias por ingresar a nuestro sistema ");     
+         while(true) {
+         
+        
           
             selection = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
                 + "Por favor digite una de las siguientes opciones: \n"
@@ -52,13 +53,12 @@ public class ProyectoVet {
                 break;
 
             default:
-                 JOptionPane.showMessageDialog(null, "Por favor digite una opción válida \n Se devolvera al menu principal");
-                    String[] vectorStrings = new String[5];
-                    main(vectorStrings);
+                 JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
+                 exit(0);
                 break;
     } 
     }
-    
+    }
     
     
         
@@ -99,10 +99,8 @@ public class ProyectoVet {
                 break;
 
             default:
-                    JOptionPane.showMessageDialog(null, "Por favor digite una opción válida \n Se devolvera al menu principal");
-                    String[] vectorStrings = new String[5];
-                    main(vectorStrings);
-                break;
+                JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
+                 return;
 
         }
     
@@ -147,8 +145,7 @@ public class ProyectoVet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    String[] vectorStrings = new String[5];
-     main(vectorStrings);
+     return;
     }
     
     
@@ -263,7 +260,7 @@ public class ProyectoVet {
             String color = JOptionPane.showInputDialog(null, "Digite el color de la mascota que desea acutualizar");
             int p_dueno_id =  Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el la cedula del dueno de la mascota que desea acutualizar"));
             
-            String procedureCall = "{call Actualizar_paciente(?, ?, ?, ?, ?, ?,?)}";
+            String procedureCall = "{call Actualizar_Paciente(?, ?, ?, ?, ?, ?,?)}";
             CallableStatement statement = conn.prepareCall(procedureCall);
 
            
@@ -380,10 +377,10 @@ public class ProyectoVet {
                 break;
 
             default:
-                    JOptionPane.showMessageDialog(null, "Por favor digite una opción válida \n Se devolvera al menu principal");
-                    String[] vectorStrings = new String[5];
-                    main(vectorStrings);
+                  JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
+                 exit(0);
                 break;
+             
 
         }
     
@@ -414,7 +411,7 @@ public class ProyectoVet {
             while (rs.next()) {
                
                 chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("idMascota") + 
-                        "\n  El nombre de la mascota es: " + rs.getString("nombre")+
+                        "\n  El nombre de la mascota es: " + rs.getString("nombre_mascota")+
                         "\n  El padedcimiento es : "+rs.getString("PADECIMIENTO")+
                          "\n  El diagnostico es : "+rs.getString("DIAGNOSTICO")+
                          "\n  El codigo de la cita es : "+rs.getInt("IDCITA")+
@@ -462,7 +459,7 @@ public class ProyectoVet {
             while (rs.next()) {
                
                  chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("idMascota") + 
-                        "\n  El nombre de la mascota es: " + rs.getString("nombre")+
+                        "\n  El nombre de la mascota es: " + rs.getString("nombre_mascota")+
                         "\n  El padedcimiento es : "+rs.getString("PADECIMIENTO")+
                          "\n  El diagnostico es : "+rs.getString("DIAGNOSTICO")+
                          "\n  El codigo de la cita es : "+rs.getInt("IDCITA")+
