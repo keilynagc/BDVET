@@ -788,7 +788,7 @@ public class ProyectoVet {
          return;
     }   
  
-    public static void actualizarDuneo(){
+    public static void actualizarDueno(){
 
     try {
             
