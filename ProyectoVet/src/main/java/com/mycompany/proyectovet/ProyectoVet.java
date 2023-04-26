@@ -684,8 +684,8 @@ public class ProyectoVet {
           
             while (rs.next()) {
                
-                chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("iddueno") + 
-                        "\n  El nombre de la mascota es: " + rs.getString("nombre")+
+                chain+= "\n ***************************************\nLa cedula es: "+ rs.getInt("iddueno") + 
+                        "\n  El nombre del dueno  es: " + rs.getString("nombre")+
                         "\n  El apellido es : "+rs.getString("Apellido")+
                          "\n  El telefono es : "+rs.getString("telefono")+
                             "\n  La direccion es : "+rs.getString("direccion");
@@ -721,7 +721,7 @@ public class ProyectoVet {
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
             String iddu = JOptionPane.showInputDialog(" Digite la cecdula del dueno a buscar");
-            String query = "select * FROM duenos where idduneo ="+iddu;
+            String query = "select * FROM duenos where idduneo ='"+iddu+"'";
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             System.out.println(query);
