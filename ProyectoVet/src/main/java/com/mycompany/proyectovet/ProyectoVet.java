@@ -46,7 +46,7 @@ public class ProyectoVet {
                menuDueno();
                 break;
             case 4:
-              
+              menuRegistro();
                 break;
             case 5:
             
@@ -895,7 +895,279 @@ public class ProyectoVet {
     
     
     
+           
+   //****************************************************************************************************************************     
+   //**************************************************************************************************************************** 
+   //                        Registro 
+   //****************************************************************************************************************************    
+   //****************************************************************************************************************************     
+    public static void menuRegistro(){
     
+        int selection2;
+        selection2 = Integer.parseInt(JOptionPane.showInputDialog(null, "V E T E R I N A R I A  \n"
+                + "Por favor digite una de las siguientes opciones: \n"
+                + "1. Ver todos los registros \n"
+                + "2. buscar un registro \n"
+                + "3. Actualizar un registro \n"
+                + "4. Eliminar un registro  \n"
+                + "5. Agregar un registro  \n"));
+        switch (selection2) {
+            case 1:
+                todosRegistro();
+                break;
+            case 2:
+                buscarRegistro();
+                break;
+            case 3:
+                actualizarRegistro();
+                break;
+            case 4:
+                eliminarRegistro();
+                break;
+            case 5:
+                agregarRegistro();
+                break;
+
+            default:
+                  JOptionPane.showMessageDialog(null, "Por favor digite una opción válida ");
+                      return;
+             
+
+        }
+    
+    }
+    
+    
+    public static  void todosRegistro (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from vista_registros_cita ");
+            
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                chain+= "\n ***************************************\nel id de la mascota es : "+ rs.getInt("idmascota") + 
+                        "\n  El nombre de la mascota  es: " + rs.getString("nombre_Mascota")+
+                        "\n  El padecimiento es : "+rs.getString("padecimiento")+
+                         "\n  El tratamiento es : "+rs.getString("tratamiento")+
+                         "\n  El diagnostico es  : "+rs.getString("diagnostico")+
+                        "\n  El di de la cita es  : "+rs.getInt("idcita");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return;
+    }
+    
+    
+  public static  void buscarRegistro (){
+        String chain= "";
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            Statement stmt = conn.createStatement();
+            String idmasc = JOptionPane.showInputDialog(" Digite el id de la mascota del registro a buscar");
+            String query = "select * FROM registro where idmascota ='"+idmasc+"'";
+            System.out.println(query);
+            ResultSet rs = stmt.executeQuery(query);
+            System.out.println(query);
+            
+            // Imprimir los resultados de la consulta
+          
+            while (rs.next()) {
+               
+                 chain+= "\n ***************************************\nEL id de la mascota buscada es : "+ rs.getInt("idmascota") + 
+                       "\n  El padecimiento es : "+rs.getString("padecimiento")+
+                         "\n  El tratamiento es : "+rs.getString("tratamiento")+
+                         "\n  El diagnostico es  : "+rs.getString("diagnostico")+
+                        "\n  El di de la cita es  : "+rs.getInt("idcita");
+                System.out.println(chain);
+                
+            }
+            JOptionPane.showMessageDialog(null, chain);
+            // Cerrar la conexión
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+    }   
+    
+  
+  
+  
+ public static  void eliminarRegistro (){
+  
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+           int idmasc = Integer.parseInt(JOptionPane.showInputDialog(" Digite el id de la mascota del registro que desea eliminar "));
+           int idCita = Integer.parseInt(JOptionPane.showInputDialog(" Digite el id de la cita del registro que desea eliminar "));
+            String procedureCall = "{call Eliminar_Registro(?,?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+            
+            statement.setInt(1, idmasc);
+             statement.setInt(2, idCita);
+        
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "El registro se  elimino correctamente");
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+    }   
+ 
+    public static void actualizarRegistro(){
+
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+            
+            // Realizar una consulta de prueba
+            int p_idMasc = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la mascota del registro que desea acutualizar"));
+            String pad = JOptionPane.showInputDialog(null, "Digite el nuevo padecimiento");
+            String trat = JOptionPane.showInputDialog(null, "Digite nuevo tratamiento");
+            String diag = JOptionPane.showInputDialog(null, "Digite el nuevo diagnostico");
+            int p_idcita = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la cita que desea actualizar"));
+            
+            
+            String procedureCall = "{call Actualizar_Registro(?, ?, ?, ?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+           
+            statement.setInt(1, p_idMasc);
+            statement.setString(2, pad);
+            statement.setString(3, trat);
+            statement.setString(4, diag);
+            statement.setInt(5, p_idcita);
+            
+            
+            
+            statement.execute();
+            
+            JOptionPane.showMessageDialog(null, "EL registro  se actualizo correctamente");
+            
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return;
+        
+    
+    }
+
+
+
+    public static void agregarRegistro(){
+ 
+    try {
+            
+            // Cargar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            
+            // Conectar a la base de datos Oracle
+            String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+            String username = "KEILYN";
+            String password = "Proverbios423";
+            Connection conn = DriverManager.getConnection(url, username, password);
+            
+              
+            // Realizar una consulta de prueba
+             int p_idMasc = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la mascota que desea agregar al registro"));
+            String pad = JOptionPane.showInputDialog(null, "Digite el  padecimiento que desea agregar al registro");
+            String trat = JOptionPane.showInputDialog(null, "Digite el  tratamiento que desea agregar al registro");
+            String diag = JOptionPane.showInputDialog(null, "Digite el diagnostico que desea agregar al registro");
+            int p_idcita = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id de la cita que desea agregar al registro"));
+            
+            
+            String procedureCall = "{call Insertar_Registro(?, ?, ?, ?, ?)}";
+            CallableStatement statement = conn.prepareCall(procedureCall);
+
+           
+            statement.setInt(1, p_idMasc);
+            statement.setString(2, pad);
+            statement.setString(3, trat);
+            statement.setString(4, diag);
+            statement.setInt(5, p_idcita);
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "EL dueno se agrego exitosamente");
+           
+             
+             
+            // Cerrar la conexión
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return;
+        
+    
+    }
     
     
     
