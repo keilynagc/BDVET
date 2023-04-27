@@ -422,10 +422,14 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las mascotas", 
                          "\n  El código de la cita es : "+rs.getInt("IDCITA")+
                          "\n  La fecha es : "+rs.getString("fecha")+" A las : "+rs.getString("HORA");
                 System.out.println(chain);
-                
             }
-            JOptionPane.showMessageDialog(null, chain);
-            // Cerrar la conexión
+                JTextArea textArea = new JTextArea(chain);
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                scrollPane.setPreferredSize(new Dimension(400, 200)); // ajusta el tamaño
+            
+JOptionPane.showMessageDialog(null, scrollPane, "Información de las citas", JOptionPane.PLAIN_MESSAGE);            
+
+// Cerrar la conexión
             rs.close();
             stmt.close();
             conn.close();
