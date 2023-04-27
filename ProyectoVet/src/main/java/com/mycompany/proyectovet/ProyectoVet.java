@@ -467,9 +467,9 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las citas", JOp
             while (rs.next()) {
                
                  chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("idMascota") + 
-                        "\n  El nombre de la mascota es: " + rs.getString("nombre_mascota")+
+                        "\n  El nombre de la mascota es: " + rs.getString("NOMBRE")+
                          "\n  El código de la cita es : "+rs.getInt("IDCITA")+
-                         "\n  La fecha es : "+rs.getString("fecha")+" A las : "+rs.getString("HORA");
+                         "\n  La fecha es : "+rs.getString("FECHA")+" A las : "+rs.getString("HORA");
                 System.out.println(chain);
                 
             }
