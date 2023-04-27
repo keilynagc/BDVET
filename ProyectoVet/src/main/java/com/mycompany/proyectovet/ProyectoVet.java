@@ -178,7 +178,7 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las mascotas", 
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
             String idmasc = JOptionPane.showInputDialog(" Digite el id de la mascota a buscar");
-            String query = "select * FROM vista_pacientes_dueno where idmascota ="+idmasc;
+            String query = "select * FROM pacientes where idmascota ="+idmasc;
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             System.out.println(query);
@@ -191,7 +191,7 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las mascotas", 
                         "\n  el nombre de la mascota es: " + rs.getString("nombre")+
                         "\n  la especie es : "+rs.getString("especie")+
                         "\n  la raza es : "+rs.getString("raza")+
-                        "\n  el dueño es : "+rs.getString("nombre_dueno");
+                        "\n  La cédula de su dueño es : "+rs.getString("IDDUENO");
                 System.out.println(chain);
                 
             }
