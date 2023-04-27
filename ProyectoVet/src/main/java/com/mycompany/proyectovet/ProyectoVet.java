@@ -1387,7 +1387,7 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las citas", JOp
             int p_idMed = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id del médico que desea actualizar"));
             String nom = JOptionPane.showInputDialog(null, "Digite el nuevo nombre");
             String apellido = JOptionPane.showInputDialog(null, "Digite el nuevo apellido");
-            int p_idespe = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite la nueva especialidad"));
+            int p_idespe = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el ID de la especialidad"));
             
             
             String procedureCall = "{call Actualizar_Medico(?, ?, ?, ?)}";
@@ -1437,7 +1437,7 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las citas", JOp
            int p_idMed = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el id del médico que desea agregar"));
             String nom = JOptionPane.showInputDialog(null, "Digite el nombre que desea  agregar");
             String apellido = JOptionPane.showInputDialog(null, "Digite el apellido que desea agregar");
-            int p_idespe = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite la especialidad que desea agregar"));
+            int p_idespe = Integer.parseInt( JOptionPane.showInputDialog(null, "Digite el ID de la especialidad al que desea agregar al médico"));
             
             
             String procedureCall = "{call Insertar_Medico(?, ?, ?, ?)}";
