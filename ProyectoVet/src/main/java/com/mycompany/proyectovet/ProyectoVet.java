@@ -457,7 +457,7 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las citas", JOp
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
             String idmasc = JOptionPane.showInputDialog(" Digite el id de la mascota a buscar");
-            String query = "select * FROM vista_registros_cita where idmascota ="+idmasc;
+            String query = "select * FROM citas where idmascota ="+idmasc;
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             System.out.println(query);
@@ -468,8 +468,6 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las citas", JOp
                
                  chain+= "\n ***************************************\nEl id de mascota es: "+ rs.getInt("idMascota") + 
                         "\n  El nombre de la mascota es: " + rs.getString("nombre_mascota")+
-                        "\n  El padecimiento es : "+rs.getString("PADECIMIENTO")+
-                         "\n  El diagnóstico es : "+rs.getString("DIAGNOSTICO")+
                          "\n  El código de la cita es : "+rs.getInt("IDCITA")+
                          "\n  La fecha es : "+rs.getString("fecha")+" A las : "+rs.getString("HORA");
                 System.out.println(chain);
