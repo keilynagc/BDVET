@@ -178,7 +178,7 @@ JOptionPane.showMessageDialog(null, scrollPane, "Información de las mascotas", 
             // Realizar una consulta de prueba
             Statement stmt = conn.createStatement();
             String idmasc = JOptionPane.showInputDialog(" Digite el id de la mascota a buscar");
-            String query = "select * FROM pacientes where idmascota ="+idmasc;
+            String query = "select * FROM paciente where idmascota ="+idmasc;
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
             System.out.println(query);
