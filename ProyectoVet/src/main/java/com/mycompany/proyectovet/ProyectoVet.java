@@ -4,14 +4,19 @@
 
 package com.mycompany.proyectovet;
 import java.awt.Dimension;
+import java.awt.Font;
 import static java.lang.System.exit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;        
 import java.sql.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
+
 
 /**
  *
@@ -20,11 +25,16 @@ import javax.swing.JTextArea;
 public class ProyectoVet {
 
     public static void main(String[] args) {
-         
-        // menu
+             // menu
         int selection;
+        ImageIcon icono = new ImageIcon("C:\\Users\\50688\\Downloads\\mascotas.png");
+        JLabel label = new JLabel(icono);
+        label.setPreferredSize(new Dimension(100, 100)); // Establece el tamaño deseado de la imagen
+
+        Font font = new Font("Arial", Font.BOLD, 20); // Define la fuente y el tamaño de letra
+        UIManager.put("OptionPane.messageFont", font); // Establece la fuente y el tamaño de letra en JOptionPane
         
-         JOptionPane.showMessageDialog(null, " Gracias por ingresar a nuestro sistema ");     
+        JOptionPane.showMessageDialog(null, "Gracias por ingresar a nuestro sistema \n" +  "¡El bienestar de tus mascotas es nuestro bienestar!", "Bienvenido", JOptionPane.INFORMATION_MESSAGE, icono);
          while(true) {
          
         
