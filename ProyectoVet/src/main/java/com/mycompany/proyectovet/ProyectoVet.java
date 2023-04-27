@@ -3,12 +3,15 @@
  */
 
 package com.mycompany.proyectovet;
+import java.awt.Dimension;
 import static java.lang.System.exit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;        
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -43,10 +46,10 @@ public class ProyectoVet {
                 menuCitas();
                 break;
             case 3:
-               menuDueno();
+                menuDueno();
                 break;
             case 4:
-              menuRegistro();
+                menuRegistro();
                 break;
             case 5:
                 menuMedico();
@@ -133,15 +136,20 @@ public class ProyectoVet {
             // Imprimir los resultados de la consulta
           
             while (rs.next()) {
-               
-                chain+= "\n ***************************************\nEl id de la mascota es: "+ rs.getInt("idMascota") + 
-                        "\n  la especie es : "+rs.getString("especie")+
-                        "\n  el nombre de la mascota es: " + rs.getString("nombre")+
-                        "\n  el dueño es : "+rs.getString("nombre_dueno");
-                System.out.println(chain);
-                
-            }
-            JOptionPane.showMessageDialog(null, chain);
+    chain += "\n ***************************************\nEl id de la mascota es: "+ rs.getInt("idMascota") + 
+             "\n  la especie es : "+rs.getString("especie")+
+             "\n  el nombre de la mascota es: " + rs.getString("nombre")+
+             "\n  el dueño es : "+rs.getString("nombre_dueno");
+    System.out.println(chain);           
+}
+
+    JTextArea textArea = new JTextArea(chain);
+    JScrollPane scrollPane = new JScrollPane(textArea);
+    scrollPane.setPreferredSize(new Dimension(400, 200)); // ajusta el tamaño
+
+JOptionPane.showMessageDialog(null, scrollPane, "Información de las mascotas", JOptionPane.PLAIN_MESSAGE);
+
+
             // Cerrar la conexión
             rs.close();
             stmt.close();
@@ -1697,5 +1705,4 @@ public class ProyectoVet {
     }
     
 }
-
-    
+  
